@@ -1,57 +1,55 @@
-# SnappPay Shipping Control for WooCommerce
+# کنترل روش حمل‌ونقل براساس درگاه پرداخت ووکامرس
 
-Disable selected WooCommerce shipping methods when a customer chooses a specific payment gateway.
+این افزونه به شما اجازه می‌دهد براساس درگاه پرداخت انتخاب‌شده در صفحه تسویه‌حساب ووکامرس، بعضی از روش‌های حمل‌ونقل را غیرفعال کنید.
 
-## Example
+برای مثال، اگر مشتری درگاه **اسنپ‌پی** را انتخاب کند، می‌توانید روش **ارسال فوری** را از گزینه‌های حمل‌ونقل حذف کنید تا مشتری فقط روش‌های مجاز برای آن درگاه را ببیند.
 
-If the customer chooses `snappay`, you can hide instant delivery, express courier, or any other shipping method that should not be available for that payment method.
+## امکانات
 
-## Features
+- سازگار با صفحه تسویه‌حساب ووکامرس.
+- دارای صفحه تنظیمات فارسی در مسیر **ووکامرس > حمل‌ونقل براساس پرداخت**.
+- امکان تعریف محدودیت جداگانه برای هر درگاه پرداخت.
+- پشتیبانی از شناسه نمونه روش حمل‌ونقل ووکامرس، مثل `flat_rate:3`.
+- به‌روزرسانی خودکار روش‌های حمل‌ونقل بعد از تغییر درگاه پرداخت.
+- بررسی نهایی هنگام ثبت سفارش برای جلوگیری از ثبت سفارش با روش حمل‌ونقل غیرمجاز.
 
-- Works with WooCommerce checkout.
-- Admin settings page under **WooCommerce > Shipping by Payment**.
-- Supports gateway-specific shipping restrictions.
-- Supports WooCommerce shipping instance IDs such as `flat_rate:3`.
-- Refreshes checkout automatically after the customer changes the payment method.
-- Adds a final validation step before order submission.
+## نصب افزونه
 
-## Installation
+1. فایل ZIP افزونه را از پیشخوان وردپرس و بخش **افزونه‌ها > افزودن > بارگذاری افزونه** آپلود کنید.
+2. افزونه **کنترل روش حمل‌ونقل براساس درگاه پرداخت ووکامرس** را فعال کنید.
+3. از منوی پیشخوان به مسیر **ووکامرس > حمل‌ونقل براساس پرداخت** بروید.
+4. برای هر درگاه پرداخت، روش‌های حمل‌ونقلی را که باید غیرفعال شوند انتخاب کنید.
+5. تغییرات را ذخیره کنید.
 
-1. Upload the `snappay-shipping-control` folder to `wp-content/plugins/`.
-2. Activate **SnappPay Shipping Control for WooCommerce** from WordPress plugins.
-3. Go to **WooCommerce > Shipping by Payment**.
-4. For each payment gateway, select the shipping methods that must be disabled.
-5. Save changes.
+## تنظیم برای اسنپ‌پی
 
-## How to configure SnappPay
+1. در صفحه تنظیمات افزونه، ردیف مربوط به درگاه اسنپ‌پی را پیدا کنید.
+2. شناسه درگاه معمولا چیزی شبیه `snappay` است، اما بسته به افزونه پرداخت شما ممکن است متفاوت باشد.
+3. در همان ردیف، روش حمل‌ونقل **ارسال فوری** یا هر روش دیگری را که نباید با اسنپ‌پی فعال باشد تیک بزنید.
+4. تنظیمات را ذخیره کنید.
 
-1. Find the SnappPay payment gateway row in the settings page. Its gateway ID is usually something like `snappay`, but it depends on the payment plugin you use.
-2. Tick the shipping methods you want to disable for SnappPay.
-3. For your example, tick the instant delivery method in the SnappPay row.
-4. Save.
+بعد از این تنظیم، وقتی مشتری در صفحه تسویه‌حساب درگاه اسنپ‌پی را انتخاب کند، روش ارسال فوری از گزینه‌های حمل‌ونقل حذف می‌شود.
 
-After this, when a customer selects SnappPay during checkout, instant delivery will be removed from the available shipping methods.
+## نکات فنی
 
-## Technical notes
+تنظیمات افزونه در گزینه وردپرسی `ssc_gateway_shipping_rules` ذخیره می‌شود.
 
-The plugin stores rules in the `ssc_gateway_shipping_rules` WordPress option.
+اعمال محدودیت‌ها از طریق فیلتر ووکامرس `woocommerce_package_rates` انجام می‌شود. افزونه درگاه پرداخت انتخاب‌شده را هنگام به‌روزرسانی تسویه‌حساب دریافت می‌کند و هنگام ثبت سفارش نیز دوباره اعتبارسنجی انجام می‌دهد.
 
-Shipping rules are applied through the WooCommerce `woocommerce_package_rates` filter. The selected payment method is stored during WooCommerce checkout refresh and also validated during checkout submission.
+## توسعه‌دهنده
 
-## Developer
+توسعه‌دهنده: [نیما شادمان](https://nimashadman.ir)
 
-Developed by [Nima Shadman](https://nimashadman.ir).
+## پیشنهاد برای گیت‌هاب
 
-## Suggested GitHub repository details
-
-Project name:
+نام پروژه:
 
 ```text
 snappay-shipping-control
 ```
 
-Short description:
+توضیح کوتاه:
 
 ```text
-WooCommerce plugin to disable selected shipping methods based on the chosen payment gateway.
+افزونه ووکامرس برای غیرفعال‌کردن روش‌های حمل‌ونقل براساس درگاه پرداخت انتخاب‌شده
 ```

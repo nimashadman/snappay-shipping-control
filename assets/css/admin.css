@@ -1,4 +1,5 @@
 .ssc-wrap {
+	direction: rtl;
 	max-width: 1100px;
 }
 
@@ -10,6 +11,7 @@
 .ssc-rules-table code {
 	display: inline-block;
 	margin-inline-start: 8px;
+	direction: ltr;
 }
 
 .ssc-checkbox {

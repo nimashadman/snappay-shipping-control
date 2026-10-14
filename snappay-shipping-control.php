@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: SnappPay Shipping Control for WooCommerce
+ * Plugin Name: کنترل روش حمل‌ونقل براساس درگاه پرداخت ووکامرس
  * Plugin URI: https://nimashadman.ir
- * Description: Disable selected WooCommerce shipping methods when specific payment gateways are selected at checkout.
+ * Description: با انتخاب هر درگاه پرداخت در صفحه تسویه‌حساب ووکامرس، روش‌های حمل‌ونقل مشخص‌شده را غیرفعال می‌کند.
  * Version: 1.0.0
- * Author: Nima Shadman
+ * Author: نیما شادمان
  * Author URI: https://nimashadman.ir
  * Text Domain: snappay-shipping-control
  * Domain Path: /languages
@@ -55,8 +55,8 @@ final class SSC_Snappay_Shipping_Control {
 	public static function register_settings_page(): void {
 		add_submenu_page(
 			'woocommerce',
-			__( 'Shipping by Payment', 'snappay-shipping-control' ),
-			__( 'Shipping by Payment', 'snappay-shipping-control' ),
+			__( 'حمل‌ونقل براساس پرداخت', 'snappay-shipping-control' ),
+			__( 'حمل‌ونقل براساس پرداخت', 'snappay-shipping-control' ),
 			'manage_woocommerce',
 			'snappay-shipping-control',
 			array( __CLASS__, 'render_settings_page' )
@@ -192,7 +192,7 @@ final class SSC_Snappay_Shipping_Control {
 			$selected_method = (string) $selected_method;
 
 			if ( in_array( $selected_method, $blocked_methods, true ) ) {
-				wc_add_notice( __( 'The selected shipping method is not available for this payment method. Please choose another shipping method.', 'snappay-shipping-control' ), 'error' );
+				wc_add_notice( __( 'روش حمل‌ونقل انتخاب‌شده برای این درگاه پرداخت فعال نیست. لطفا روش حمل‌ونقل دیگری انتخاب کنید.', 'snappay-shipping-control' ), 'error' );
 				return;
 			}
 		}
@@ -211,9 +211,9 @@ final class SSC_Snappay_Shipping_Control {
 		$shipping_methods = self::get_shipping_methods();
 		?>
 		<div class="wrap ssc-wrap">
-			<h1><?php esc_html_e( 'Shipping by Payment', 'snappay-shipping-control' ); ?></h1>
+			<h1><?php esc_html_e( 'حمل‌ونقل براساس پرداخت', 'snappay-shipping-control' ); ?></h1>
 			<p>
-				<?php esc_html_e( 'Choose which shipping methods should be disabled when a customer selects each payment gateway.', 'snappay-shipping-control' ); ?>
+				<?php esc_html_e( 'مشخص کنید با انتخاب هر درگاه پرداخت، کدام روش‌های حمل‌ونقل در صفحه تسویه‌حساب غیرفعال شوند.', 'snappay-shipping-control' ); ?>
 			</p>
 
 			<form method="post" action="options.php">
@@ -222,8 +222,8 @@ final class SSC_Snappay_Shipping_Control {
 				<table class="widefat striped ssc-rules-table">
 					<thead>
 						<tr>
-							<th><?php esc_html_e( 'Payment gateway', 'snappay-shipping-control' ); ?></th>
-							<th><?php esc_html_e( 'Disabled shipping methods', 'snappay-shipping-control' ); ?></th>
+							<th><?php esc_html_e( 'درگاه پرداخت', 'snappay-shipping-control' ); ?></th>
+							<th><?php esc_html_e( 'روش‌های حمل‌ونقل غیرفعال', 'snappay-shipping-control' ); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -259,8 +259,8 @@ final class SSC_Snappay_Shipping_Control {
 				<?php
 				printf(
 					/* translators: %s: developer link. */
-					esc_html__( 'Developed by %s.', 'snappay-shipping-control' ),
-					'<a href="https://nimashadman.ir" target="_blank" rel="noopener noreferrer">Nima Shadman</a>'
+					esc_html__( 'توسعه‌دهنده: %s', 'snappay-shipping-control' ),
+					'<a href="https://nimashadman.ir" target="_blank" rel="noopener noreferrer">نیما شادمان</a>'
 				);
 				?>
 			</div>
@@ -376,7 +376,7 @@ final class SSC_Snappay_Shipping_Control {
 		$zones = WC_Shipping_Zones::get_zones();
 		$zones[] = array(
 			'zone_id'          => 0,
-			'zone_name'        => __( 'Locations not covered by your other zones', 'woocommerce' ),
+			'zone_name'        => __( 'مکان‌هایی که در ناحیه‌های دیگر پوشش داده نشده‌اند', 'snappay-shipping-control' ),
 			'shipping_methods' => WC_Shipping_Zones::get_zone( 0 )->get_shipping_methods(),
 		);
 
@@ -413,7 +413,7 @@ add_action(
 			static function (): void {
 				?>
 				<div class="notice notice-error">
-					<p><?php esc_html_e( 'SnappPay Shipping Control requires WooCommerce to be installed and active.', 'snappay-shipping-control' ); ?></p>
+					<p><?php esc_html_e( 'افزونه کنترل روش حمل‌ونقل براساس درگاه پرداخت برای اجرا به ووکامرس فعال نیاز دارد.', 'snappay-shipping-control' ); ?></p>
 				</div>
 				<?php
 			}
