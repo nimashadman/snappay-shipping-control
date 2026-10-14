@@ -1,0 +1,23 @@
+.ssc-wrap {
+	max-width: 1100px;
+}
+
+.ssc-rules-table th,
+.ssc-rules-table td {
+	vertical-align: top;
+}
+
+.ssc-rules-table code {
+	display: inline-block;
+	margin-inline-start: 8px;
+}
+
+.ssc-checkbox {
+	display: block;
+	margin: 0 0 10px;
+}
+
+.ssc-footer {
+	margin-top: 24px;
+	color: #646970;
+}
